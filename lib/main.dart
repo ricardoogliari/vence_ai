@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vence_ai/pages/offers.dart';
-import 'package:vence_ai/pages/welcome.dart';
+import 'package:vence_ai/routes.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,13 +10,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Resgate Alimentos App',
       theme: ThemeData(
         primarySwatch: Colors.green,
         fontFamily: 'Montserrat', // Altere para a fonte que você está usando
       ),
-      home: const WelcomeScreen(),
+      routerConfig: router,
     );
   }
 }
