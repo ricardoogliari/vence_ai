@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:vence_ai/utils/routes.dart';
 import 'package:vence_ai/widgets/va_elevattedbutton.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -57,7 +59,9 @@ class WelcomeScreen extends StatelessWidget {
               child: SizedBox(
                 height: 56.0, // Altura do botão
                 child: VAElevattedbutton(
-                  onPressed: _handleStart,
+                  onPressed: () {
+                    context.go(offersPath);
+                  },
                   title: 'Começar',
                 ),
               ),
@@ -66,9 +70,5 @@ class WelcomeScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _handleStart() {
-    debugPrint('Botão "Começar" pressionado!');
   }
 }

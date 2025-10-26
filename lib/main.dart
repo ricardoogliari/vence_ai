@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vence_ai/routes.dart';
+import 'package:vence_ai/utils/routes.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,6 +11,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Resgate Alimentos App',
       theme: ThemeData(
         primarySwatch: Colors.green,
