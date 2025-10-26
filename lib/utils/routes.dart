@@ -7,6 +7,7 @@ const homePath = '/';
 const offersPath = '/offers';
 
 final GoRouter router = GoRouter(
+  initialLocation: homePath,
   routes: [
     GoRoute(
       path: homePath,

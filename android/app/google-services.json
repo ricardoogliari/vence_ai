@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "593926860320",
+    "project_id": "vence-ai",
+    "storage_bucket": "vence-ai.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593926860320:android:d2a17fdf8c213a1ad09645",
+        "android_client_info": {
+          "package_name": "com.example.vence_ai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtO8cgAWEA3kB-v1QiSmigbvsUV2ahpNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
