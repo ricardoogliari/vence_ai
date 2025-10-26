@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:vence_ai/routes.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:vence_ai/pages/welcome.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MainApp());
 }
 
@@ -10,13 +13,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       title: 'Resgate Alimentos App',
       theme: ThemeData(
         primarySwatch: Colors.green,
         fontFamily: 'Montserrat', // Altere para a fonte que você está usando
       ),
-      routerConfig: router,
+      home: const WelcomeScreen(),
     );
   }
 }
