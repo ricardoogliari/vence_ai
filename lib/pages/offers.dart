@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vence_ai/desygnsystem/colors.dart';
 import 'package:vence_ai/models/offer.dart';
+import 'package:vence_ai/services/db_service.dart';
 import 'package:vence_ai/widgets/va_bottomnavigationbar.dart';
 import 'package:vence_ai/widgets/va_filtechip.dart';
 import 'package:vence_ai/widgets/va_textfield.dart';
@@ -10,6 +11,9 @@ class OffersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DBServiceImpl dbServiceImpl = DBServiceImpl();
+    dbServiceImpl.fetchOffers();
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -133,7 +137,7 @@ class OfferListItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  offer.discount,
+                  '30% OFF',
                   style: const TextStyle(
                     fontSize: 14.0,
                     fontWeight: FontWeight.bold,
@@ -142,7 +146,7 @@ class OfferListItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 4.0),
                 Text(
-                  offer.title,
+                  offer.product,
                   style: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w700,
@@ -151,7 +155,7 @@ class OfferListItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 4.0),
                 Text(
-                  '${offer.store} - ${offer.distance}',
+                  '${offer.store} - 300m',
                   style: const TextStyle(
                     fontSize: 14.0,
                     fontWeight: FontWeight.w400,
@@ -169,7 +173,7 @@ class OfferListItem extends StatelessWidget {
               height: 90.0, // Altura da imagem (para torná-la quadrada)
               color: const Color(0xFFE0E0E0), // Placeholder color
               child: Image.asset(
-                offer.imageUrl,
+                'assets/images/milk.png',
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return const Center(
