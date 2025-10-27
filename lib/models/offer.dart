@@ -1,9 +1,18 @@
-// offers_model.dart
+import 'package:json_annotation/json_annotation.dart';
+
+part 'offer.g.dart';
+
+@JsonSerializable()
 class Offer {
+  @JsonKey(name: 'current_price')
   final double currentPrice;
+
+  @JsonKey(name: 'original_price')
   final double originalPrice;
-  final double latitude;
-  final double longitude;
+
+  double? latitude;
+  double? longitude;
+
   final String product;
   final String store;
 
@@ -12,9 +21,13 @@ class Offer {
     required this.originalPrice,
     required this.store,
     required this.product,
-    required this.latitude,
-    required this.longitude,
+    this.latitude,
+    this.longitude,
   });
+
+  factory Offer.fromJson(Map<String, dynamic> json) => _$OfferFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OfferToJson(this);
 }
 
 // Dados de exemplo para preencher a lista

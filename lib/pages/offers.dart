@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:vence_ai/desygnsystem/colors.dart';
 import 'package:vence_ai/models/offer.dart';
+import 'package:vence_ai/repositories/offers_repository.dart';
 import 'package:vence_ai/services/db_service.dart';
+import 'package:vence_ai/viewmodels/offers_view_model.dart';
 import 'package:vence_ai/widgets/va_bottomnavigationbar.dart';
 import 'package:vence_ai/widgets/va_filtechip.dart';
 import 'package:vence_ai/widgets/va_textfield.dart';
 
 class OffersScreen extends StatelessWidget {
-  const OffersScreen({super.key});
+  OffersScreen({super.key});
+
+  late OffersViewmodel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    DBServiceImpl dbServiceImpl = DBServiceImpl();
-    dbServiceImpl.fetchOffers();
+    viewModel = OffersViewmodel(
+      offersRepository: OffersRepositoryImpl(service: DBServiceImpl()),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -44,11 +49,16 @@ class OffersScreen extends StatelessWidget {
           ),
           const FiltersRow(),
           Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.zero, // Remove o padding padrão do topo
-              itemCount: dummyOffers.length,
-              itemBuilder: (context, index) {
-                return OfferListItem(offer: dummyOffers[index]);
+            child: ListenableBuilder(
+              listenable: viewModel,
+              builder: (context, _) {
+                return ListView.builder(
+                  padding: EdgeInsets.zero, // Remove o padding padrão do topo
+                  itemCount: viewModel.offers?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    return OfferListItem(offer: viewModel.offers![index]);
+                  },
+                );
               },
             ),
           ),

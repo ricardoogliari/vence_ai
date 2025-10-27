@@ -18,7 +18,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: offersPath,
       builder: (BuildContext context, GoRouterState state) {
-        return const OffersScreen();
+        return OffersScreen();
       },
     ),
   ],
