@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:vence_ai/desygnsystem/colors.dart';
 import 'package:vence_ai/models/offer.dart';
 import 'package:vence_ai/repositories/location_repository.dart';
