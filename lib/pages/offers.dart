@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:vence_ai/desygnsystem/colors.dart';
 import 'package:vence_ai/models/offer.dart';
+import 'package:vence_ai/repositories/location_repository.dart';
 import 'package:vence_ai/repositories/offers_repository.dart';
 import 'package:vence_ai/services/db_service.dart';
 import 'package:vence_ai/viewmodels/offers_view_model.dart';
@@ -17,6 +19,7 @@ class OffersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     viewModel = OffersViewmodel(
       offersRepository: OffersRepositoryImpl(service: DBServiceImpl()),
+      locationRepository: LocationRepositoryImpl(),
     );
 
     return Scaffold(
@@ -68,6 +71,44 @@ class OffersScreen extends StatelessWidget {
       bottomNavigationBar: const CustomBottomNavBar(),
     );
   }
+
+  /*uture<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+        'Location permissions are permanently denied, we cannot request permissions.',
+      );
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    return await Geolocator.getCurrentPosition();
+  }*/
 }
 
 class SearchBarWidget extends StatelessWidget {
@@ -146,14 +187,7 @@ class OfferListItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  '30% OFF',
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold,
-                    color: primaryTextColor, // Cor de destaque para o desconto
-                  ),
-                ),
+                Text(offer.discount ?? '', style: discountText),
                 const SizedBox(height: 4.0),
                 Text(
                   offer.product,
@@ -165,12 +199,8 @@ class OfferListItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 4.0),
                 Text(
-                  '${offer.store} - 300m',
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w400,
-                    color: secondaryTextColor,
-                  ),
+                  '${offer.store} - ${offer.distanceInMeters}',
+                  style: distanceText,
                 ),
               ],
             ),
@@ -182,8 +212,8 @@ class OfferListItem extends StatelessWidget {
               width: 90.0, // Largura da imagem
               height: 90.0, // Altura da imagem (para torná-la quadrada)
               color: const Color(0xFFE0E0E0), // Placeholder color
-              child: Image.asset(
-                'assets/images/milk.png',
+              child: Image.network(
+                offer.image,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return const Center(

@@ -7,7 +7,7 @@ class VATextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
     decoration: BoxDecoration(
-      color: grey200,
+      color: primaryTextColor.withOpacity(0.05),
       borderRadius: BorderRadius.circular(12),
     ),
     child: TextField(

@@ -19,7 +19,10 @@ class MainApp extends StatelessWidget {
       title: 'Resgate Alimentos App',
       theme: ThemeData(
         primarySwatch: Colors.green,
-        fontFamily: 'Montserrat', // Altere para a fonte que você está usando
+        fontFamily: 'Montserrat',
+        bottomAppBarTheme: BottomAppBarThemeData(
+          color: Colors.grey.shade200,
+        ), // Altere para a fonte que você está usando
       ),
       routerConfig: router,
     );

@@ -10,8 +10,6 @@ class VABottomNavigationBar extends BottomNavigationBar {
   }) : super(
          // Define o tipo para 'fixed' para exibir o texto
          type: BottomNavigationBarType.fixed,
-         backgroundColor: Colors.white,
-         elevation: 8,
          selectedItemColor: primaryTextColor,
          unselectedItemColor: secondaryTextColor,
          selectedLabelStyle: const TextStyle(
