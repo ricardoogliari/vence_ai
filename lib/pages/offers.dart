@@ -10,17 +10,12 @@ import 'package:vence_ai/widgets/va_filtechip.dart';
 import 'package:vence_ai/widgets/va_textfield.dart';
 
 class OffersScreen extends StatelessWidget {
-  OffersScreen({super.key});
+  const OffersScreen({super.key, required this.viewModel});
 
-  late OffersViewmodel viewModel;
+  final OffersViewmodel viewModel;
 
   @override
   Widget build(BuildContext context) {
-    viewModel = OffersViewmodel(
-      offersRepository: OffersRepositoryImpl(service: DBServiceImpl()),
-      locationRepository: LocationRepositoryImpl(),
-    );
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

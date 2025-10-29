@@ -113,22 +113,10 @@ void main() {
         locationRepository: mockLocationRepository,
       );
 
-      await Future.delayed(Duration.zero);
-
       expect(viewModel.offers, isNull);
     });
 
     test('handles error when fetching location', () async {
-      final offers = [
-        Offer(
-          currentPrice: 80,
-          originalPrice: 100,
-          store: 'Store A',
-          product: 'Product A',
-          image: '',
-        ),
-      ];
-
       when(
         mockOffersRepository.fetchOffers(),
       ).thenAnswer((_) async => Result.ok(offers));
