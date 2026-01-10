@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:vence_ai/desygnsystem/colors.dart';
 
 class VATextfield extends StatelessWidget {
-  const VATextfield({super.key});
+  VATextfield({super.key, required this.onChanged});
+
+  Function(String value) onChanged;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -11,6 +13,7 @@ class VATextfield extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
     ),
     child: TextField(
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: 'Pesquisar',
         hintStyle: TextStyle(color: grey600),

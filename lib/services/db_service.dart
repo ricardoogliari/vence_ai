@@ -14,11 +14,6 @@ class DBServiceImpl extends DBService {
             Map<String, dynamic> maps = doc.data()! as Map<String, dynamic>;
             Offer offer = Offer.fromJson(maps);
 
-            GeoPoint geoPoint = maps['position'] as GeoPoint;
-
-            offer.latitude = geoPoint.latitude;
-            offer.longitude = geoPoint.longitude;
-
             return offer;
           }).toList();
         })

@@ -10,16 +10,21 @@ class Offer {
   @JsonKey(name: 'original_price')
   final double originalPrice;
 
+  @JsonKey(name: 'due_date')
+  final int dueDate;
+
   String? discount;
 
-  double? latitude;
-  double? longitude;
+  double latitude;
+  double longitude;
 
   double? distance;
   String? distanceInMeters;
 
   final String product;
   final String store;
+
+  @JsonKey(name: 'image_base64')
   final String image;
 
   Offer({
@@ -27,8 +32,9 @@ class Offer {
     required this.originalPrice,
     required this.store,
     required this.product,
-    this.latitude,
-    this.longitude,
+    required this.latitude,
+    required this.longitude,
+    required this.dueDate,
     this.distance,
     this.distanceInMeters,
     this.discount,

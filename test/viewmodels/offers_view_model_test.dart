@@ -27,6 +27,7 @@ void main() {
         latitude: -23.5505,
         longitude: -46.6333,
         image: '',
+        dueDate: 1769457580000
       ),
     ];
     final position = Position(

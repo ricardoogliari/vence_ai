@@ -20,3 +20,8 @@ TextStyle distanceText = const TextStyle(
   fontWeight: FontWeight.w400,
   color: green,
 );
+TextStyle dueDateText = const TextStyle(
+  fontSize: 15.0,
+  fontWeight: FontWeight.w200,
+  color: Colors.black,
+);

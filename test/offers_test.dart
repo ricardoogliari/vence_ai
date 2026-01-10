@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:vence_ai/elements/custom_bottom_bar.dart';
+import 'package:vence_ai/elements/filter_row.dart';
+import 'package:vence_ai/elements/offer_list_item.dart';
+import 'package:vence_ai/elements/search_bar.dart';
 import 'package:vence_ai/models/offer.dart';
 import 'package:vence_ai/pages/offers.dart';
 import 'package:vence_ai/viewmodels/offers_view_model.dart';
@@ -19,6 +23,9 @@ void main() {
       originalPrice: 10.0,
       currentPrice: 5.0,
       image: 'https://via.placeholder.com/150',
+      latitude: 10.0,
+      longitude: 10.0,
+      dueDate: 1769457580000
     ),
     Offer(
       product: 'Product 2',
@@ -26,6 +33,9 @@ void main() {
       originalPrice: 20.0,
       currentPrice: 10.0,
       image: 'https://via.placeholder.com/150',
+      latitude: 10.0,
+      longitude: 10.0,
+      dueDate: 1769457580000
     ),
   ];
 
